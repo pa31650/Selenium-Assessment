@@ -10,14 +10,14 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.ArrayList;
 
-public class SeleniumTest {
+public class RateValidationTest {
 
     @BeforeTest
     public void BeforeTest(){
 
     }
     @Test
-    public void seleniumAssessment(){
+    public void RateValidation(){
         // Navigate to https://pnfp.myapexcard.com/info
         // Setup ChromeDriver using WebDriverManager
         WebDriverManager.chromedriver().setup();
@@ -53,13 +53,12 @@ public class SeleniumTest {
         //switch to new tab
         ArrayList<String> newTb = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(newTb.get(1));
-
         wait.until(ExpectedConditions.titleContains("Terms"));
+
         wait.until(d -> driver.findElement(By.xpath("//td//b[text()[contains(.,'APR for Cash Advances')]]/parent::td/following-sibling::td/b")).isDisplayed());
 
         // Assert that the APR for Cash Advances is less than 24%
-        var rate = driver.findElement(By.xpath("//td//b[text()[contains(.,'APR for Cash Advances')]]/parent::td/following-sibling::td/b")).getText();
-        double CaRate = Double.parseDouble(rate.replace("%", ""));
+        var rate = driver.findElement(By.xpath("//td//b[text()[contains(.,'APR for Cash Advances')]]/parent::td/following-sibling::td/b")).getText();double CaRate = Double.parseDouble(rate.replace("%", ""));
         double maxRate = 24.0;
         Assert.assertTrue(CaRate < maxRate);
 
