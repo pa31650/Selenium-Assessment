@@ -11,11 +11,6 @@ import java.time.Duration;
 import java.util.ArrayList;
 
 public class RateValidationTest {
-
-    @BeforeTest
-    public void BeforeTest(){
-
-    }
     @Test
     public void RateValidation(){
         // Navigate to https://pnfp.myapexcard.com/info
